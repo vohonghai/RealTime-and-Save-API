@@ -38,3 +38,4 @@ document.getElementById("downloadBtn").addEventListener("click", () => {
   a.download = "realtime_data.csv";
   a.click();
 });
+
