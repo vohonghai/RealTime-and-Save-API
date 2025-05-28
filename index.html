@@ -1,24 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Realtime Radiation Monitor</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <h1>Realtime Station: ReWes-I89</h1>
-  <div class="card">
-    <div><strong>Time:</strong> <span id="localTime">--</span></div>
-    <div><strong>Temp (°C):</strong> <span id="temperature">--</span></div>
-    <div><strong>Humidity (%):</strong> <span id="humidity">--</span></div>
-    <div><strong>Counts:</strong> <span id="counts">--</span></div>
-    <div><strong>CPS:</strong> <span id="cps">--</span></div>
-    <div><strong>uSv/h:</strong> <span id="uSv">--</span></div>
-    <div><strong>Timestamp:</strong> <span id="timestamp">--</span></div>
-  </div>
-  <button id="downloadBtn">Download CSV</button>
+<button onclick="downloadCSV()">Download Full Data</button>
 
-  <script src="script.js"></script>
-</body>
-</html>
+<script>
+  function downloadCSV() {
+    const csvURL = "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/data.csv";
+    const a = document.createElement("a");
+    a.href = csvURL;
+    a.download = "data.csv";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+</script>
