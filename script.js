@@ -1,4 +1,4 @@
-const apiURL = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec";  // Thay URL của bạn
+const apiURL = "https://script.google.com/macros/s/AKfycbzSb9XVwkLzyyJY6ileivj1gThZI9juwonQ50hhGThJ6b5mMY08GL2g_2heLgxzGcY/exec";  // Thay URL của bạn
 let allData = [];
 
 function fetchData() {
