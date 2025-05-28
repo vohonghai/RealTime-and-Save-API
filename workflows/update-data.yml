@@ -1,0 +1,29 @@
+name: Append API Data to CSV
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # Every 5 minutes
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install jq
+        run: sudo apt-get install jq
+
+      - name: Fetch data from API
+        run: |
+          curl -s https://script.google.com/macros/s/AKfycbzSb9XVwkLzyyJY6ileivj1gThZI9juwonQ50hhGThJ6b5mMY08GL2g_2heLgxzGcY/exec -o latest.json
+          jq -r '[.localTime, .temperature, .humidity, .counts, .cps, .uSv, .timestamp, .stationName] | @csv' latest.json >> data.csv
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add data.csv
+          git commit -m "Append data from API" || echo "No changes"
+          git push
